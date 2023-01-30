@@ -1,4 +1,5 @@
-from app import add
+from app import change
 
-def test_add():
-    assert add(1, 2) == 3
+
+def test_change():
+    assert [{5: 'quarters'}, {1: 'nickels'}, {4: 'pennies'}] == change(1.34)
