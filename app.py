@@ -1,5 +1,6 @@
-def hello():
-    return "hello world! (testing)"
+def add(x, y):
+    return x+y
 
 
-print(hello())
+result = add(1,2)
+print(result)
