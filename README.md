@@ -1,6 +1,9 @@
-[![CI](https://github.com/nogibjj/aws-template/actions/workflows/cicd.yml/badge.svg?branch=main)](https://github.com/nogibjj/aws-template/actions/workflows/cicd.yml)
-[![Codespaces Prebuilds](https://github.com/nogibjj/aws-template/actions/workflows/codespaces/create_codespaces_prebuilds/badge.svg?branch=main)](https://github.com/nogibjj/aws-template/actions/workflows/codespaces/create_codespaces_prebuilds)
+<!-- [![CI](https://github.com/nogibjj/aws-template/actions/workflows/cicd.yml/badge.svg?branch=main)](https://github.com/nogibjj/aws-template/actions/workflows/cicd.yml)
+[![Codespaces Prebuilds](https://github.com/nogibjj/aws-template/actions/workflows/codespaces/create_codespaces_prebuilds/badge.svg?branch=main)](https://github.com/nogibjj/aws-template/actions/workflows/codespaces/create_codespaces_prebuilds) -->
 
+
+
+[![Python application test with GitHub Actions](https://github.com/nogibjj/project-1-sunset/actions/workflows/main.yml/badge.svg)](https://github.com/nogibjj/project-1-sunset/actions/workflows/main.yml)
 ## IDS 721 Project 1: Cloud Continuous Delivery of Microservice - Sunrise/Sunset Info
 
 ### Intro 
