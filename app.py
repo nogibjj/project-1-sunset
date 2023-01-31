@@ -1,53 +1,76 @@
 from flask import Flask
 from flask import jsonify
+from flask import request
+import requests
+import json
+import datetime
+import pytz
+import collections
+from geo import get_location
+
+def sun_rise_set(timezone_name: str, latitude: str, longitude: str):
+    response = requests.get('https://api.sunrise-sunset.org/json', params={'lat': latitude, 'lng': longitude}).json()
+    tz = pytz.timezone(timezone_name)
+    time_zone = tz.utcoffset(dt=datetime.datetime.utcnow())
+    sunrise = datetime.datetime.strptime(response['results']['sunrise'], "%I:%M:%S %p")
+    sunset = datetime.datetime.strptime(response['results']['sunset'], "%I:%M:%S %p")
+    dawn = datetime.datetime.strptime(response['results']['civil_twilight_begin'], "%I:%M:%S %p")
+    dusk = datetime.datetime.strptime(response['results']['civil_twilight_end'], "%I:%M:%S %p")
+    solar_noon = datetime.datetime.strptime(response['results']['solar_noon'], "%I:%M:%S %p")
+    result = collections.OrderedDict()
+    result = {'sunrise': str((sunrise + time_zone).time()), 
+              'sunset': str((sunset + time_zone).time()),
+              'day length': response['results']['day_length'],
+              'solar noon': str((solar_noon + time_zone).time()),
+              'dawn begin': str((dawn + time_zone).time()),
+              'dusk end': str((dusk + time_zone).time()),
+              'lat': latitude,
+              'lng': longitude,
+              'time zone': timezone_name}
+    return result
+
+
 app = Flask(__name__)
 
-def change(amount):
-    # calculate the resultant change and store the result (res)
-    res = []
-    coins = [1,5,10,25] # value of pennies, nickels, dimes, quarters
-    coin_lookup = {25: "quarters", 10: "dimes", 5: "nickels", 1: "pennies"}
+@app.route("/")
+def home():
+    return 'Welcome to the Sunset Info'
+  
+# @app.route('/')
+# def index():
+#     url = 'http://freegeoip.net/json/{}'.format(request.remote_addr)
+#     r = requests.get(url)
+#     j = json.loads(r.text)
+#     city = j['city']
 
-    # divide the amount*100 (the amount in cents) by a coin value
-    # record the number of coins that evenly divide and the remainder
-    coin = coins.pop()
-    num, rem  = divmod(int(amount*100), coin)
-    # append the coin type and number of coins that had no remainder
-    res.append({num:coin_lookup[coin]})
-
-    # while there is still some remainder, continue adding coins to the result
-    while rem > 0:
-        coin = coins.pop()
-        num, rem = divmod(rem, coin)
-        if num:
-            if coin in coin_lookup:
-                res.append({num:coin_lookup[coin]})
-    return res
+#     return city
 
 
-@app.route('/')
-def hello():
-    """Return a friendly HTTP greeting."""
-    print("I am inside hello world")
-    return 'Hello World! I can make change at route: /change'
+# @app.route("/")
+# def index():
+#     title = "Homepage"	
+#     # return render_template("index.html", title=title, location = get_location(), temperature = get_temperature(), city_info = get_city_info())
 
-@app.route('/change/<dollar>/<cents>')
-def changeroute(dollar, cents):
-    print(f"Make Change for {dollar}.{cents}")
-    amount = f"{dollar}.{cents}"
-    result = change(float(amount))
-    return jsonify(result)
+# @app.route("/get-weather", methods=['POST'])
+# def get_weather():
+# 	if request.method == 'POST':
+# 		data = request.json
+# 		location = get_location(data['city'])
+# 		return {'temperature': get_temperature(location), 'wiki': get_city_info(data['city'])}
+
+
+@app.route('/search/<input>', methods=["GET"])
+def get_time(input):
+    geo_info = get_location(input)
     
+    lat = str(geo_info['lat'])
+    lng = str(geo_info['lng'])
+    timezone = geo_info['timezone']
     
-@app.route('/100/change/<dollar>/<cents>')
-def change100route(dollar, cents):
-    print(f"Make Change for {dollar}.{cents}")
-    amount = f"{dollar}.{cents}"
-    amount100 = float(amount) * 100
-    print(f"This is the {amount} X 100")
-    result = change(amount100)
-    return jsonify(result)
-
+    result = sun_rise_set(timezone, lat, lng)
+    result['address you input'] = input
+    
+    return result
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=8080, debug=True)
