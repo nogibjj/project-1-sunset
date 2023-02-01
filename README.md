@@ -8,32 +8,53 @@
 
 ### Intro 
 
-the project will construct a microservice that provides users with information of sunrise, and sunset time/positions. Moreover, I hope I can combine with local weather information to suggest whether it is a good day to observe suggest sunrise and sunset. 
-<!-- With extra time, probably I can recommand good locations to observe sunrise/sunset based on users' location. -->
+the project will construct a AWS-based microservice that provides users with information of sunrise/sunset time given a location. Moreover, I hope I can combine with local weather information to suggest whether it is a good day to observe suggest sunrise and sunset. 
+
 
 ### Usage
-* First, it will require the users' geographic location (long, lat) info by user's IP.
-* Second, the server will use user's location info to get the local sunrise/sunset info via APIs.
-* Third, it get local weather info via APIs and build a simple algorithm to show whether it is a good day to observe suggest sunrise and sunset. (e.g., Rainy day, no sunrise/sunset; the day before an hurricane, spectacular sunset I promised)
+* First, Users need to input a place and a date that they want to search of sunrise/sunset information.
+* Second, the server will get the local sunrise/sunset info via APIs.
+* Third, it get local weather info via APIs and build a simple algorithm to show whether it is a good day to observe suggest sunrise and sunset. (e.g., Rainy day, no sunrise/sunset; the day before an hurricane, spectacular sunset I promise)
 * Finally, it will allow users to customize the timestamp (past or future).
 
 ### Project Tasks
-
-* Create a Microservice in Flask or Fast API
-* Push source code to Github
+* ~~Create a Microservice in Flask or Fast API~~
+* ~~Push source code to Github~~
 * Configure Build System to Deploy changes
 * Use IaC (Infrastructure as Code) to deploy code
-* Use either AWS, Azure, GCP (recommended services include Google App Engine, AWS App Runner or Azure App Services)
+* ~~Use either AWS, Azure, GCP (recommended services include Google App Engine, AWS App Runner or Azure App Services)~~
 * Containerization is optional, but recommended
 
 ### Current Plan
 * Week 4 (of Spring 23): 
-  * set up GitHub Actions and AWS.
-  * write up the server FlaskAPI
+  * ~~set up GitHub Actions and AWS.~~
+  * ~~write up the server FlaskAPI.~~
   
 * Week 5 (of Spring 23): 
-  * Modify UI design
-  * Testing
+  * Combine with weather info.
+  * Design UI design.
+  * Deploy it.
+
+### Project Set Up
+1. Create and source the virtual environment
+```
+python3 -m venv env
+source env/bin/activate
+```
+2. Install Requirement
+```
+make install
+```
+3. Run flask
+```
+python3 
+```
+### Current Progress
+#### Homepage
+![Home](https://user-images.githubusercontent.com/68854273/215937259-87aa0834-f556-4336-8bb9-97afaa06730f.png) 
+
+#### Homepage
+![Duke University, 2023-02-01](https://user-images.githubusercontent.com/68854273/215937898-404b07b7-5e47-40fe-bc8b-83a61d226579.png) 
 
 
 ### Reference Video(s):
@@ -81,3 +102,5 @@ Things included are:
 * [Implementing MLOps in the Enterprise](https://learning.oreilly.com/library/view/implementing-mlops-in/9781098136574/)
 * [Practical MLOps: Operationalizing Machine Learning Models](https://www.amazon.com/Practical-MLOps-Operationalizing-Machine-Learning/dp/1098103017)
 * [Coursera-Dockerfile](https://gist.github.com/noahgift/82a34d56f0a8f347865baaa685d5e98d)
+
+![Sunrise in Miami Beach](https://user-images.githubusercontent.com/68854273/211383609-a64c45a9-d359-4edf-9b2f-3733a3bf2e40.png)
