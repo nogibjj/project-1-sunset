@@ -29,22 +29,11 @@ def sun_rise_set(timezone_name: str, latitude: str, longitude: str, date:str):
     }
     return result
 
-
 app = Flask(__name__)
 
 @app.route("/")
 def home():
     return 'Welcome to the Sunset Info'
-  
-# @app.route('/')
-# def index():
-#     url = 'http://freegeoip.net/json/{}'.format(request.remote_addr)
-#     r = requests.get(url)
-#     j = json.loads(r.text)
-#     city = j['city']
-
-#     return city
-
 
 # @app.route("/")
 # def index():

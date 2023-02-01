@@ -7,7 +7,7 @@ geolocator = Nominatim(user_agent="Sunset")
 from timezonefinder import TimezoneFinder
 obj = TimezoneFinder()
 
-def get_location(ville="Durham"):
+def get_location(ville="Durham NC"):
 	location = geolocator.geocode(ville)
 	output =  {"lat": location.latitude, "lng": location.longitude, }
 	timezone = obj.timezone_at(lng = location.longitude, lat= location.latitude)
