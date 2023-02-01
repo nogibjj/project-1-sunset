@@ -1,10 +1,3 @@
-from flask import Flask
-import requests
-# import json
-import datetime
-import pytz
-import collections
-from geo import get_location
 from app import sun_rise_set
 
 test_answer = {
