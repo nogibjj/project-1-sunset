@@ -9,3 +9,4 @@ test:
 	python -m pytest -vv --cov=app test.py
 	
 all: install lint test
+
