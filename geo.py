@@ -1,7 +1,6 @@
 from geopy.geocoders import Nominatim
 from geopy.geocoders import GeoNames
 
-
 geolocator = Nominatim(user_agent="Sunset")
 
 from timezonefinder import TimezoneFinder
