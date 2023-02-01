@@ -1,15 +1,13 @@
 from flask import Flask
-from flask import jsonify
-from flask import request
 import requests
-import json
+# import json
 import datetime
 import pytz
 import collections
 from geo import get_location
 
-def sun_rise_set(timezone_name: str, latitude: str, longitude: str):
-    response = requests.get('https://api.sunrise-sunset.org/json', params={'lat': latitude, 'lng': longitude}).json()
+def sun_rise_set(timezone_name: str, latitude: str, longitude: str, date:str):
+    response = requests.get('https://api.sunrise-sunset.org/json', params={'lat': latitude, 'lng': longitude, 'date': date}).json()
     tz = pytz.timezone(timezone_name)
     time_zone = tz.utcoffset(dt=datetime.datetime.utcnow())
     sunrise = datetime.datetime.strptime(response['results']['sunrise'], "%I:%M:%S %p")
@@ -26,7 +24,9 @@ def sun_rise_set(timezone_name: str, latitude: str, longitude: str):
               'dusk end': str((dusk + time_zone).time()),
               'lat': latitude,
               'lng': longitude,
-              'time zone': timezone_name}
+              'time zone': timezone_name,
+              'date': date,
+    }
     return result
 
 
@@ -58,17 +58,18 @@ def home():
 # 		location = get_location(data['city'])
 # 		return {'temperature': get_temperature(location), 'wiki': get_city_info(data['city'])}
 
-
-@app.route('/search/<input>', methods=["GET"])
-def get_time(input):
-    geo_info = get_location(input)
+@app.route('/search/<address>/<date>', methods=["GET"])
+def get_time(address, date):
+    geo_info = get_location(address)
     
     lat = str(geo_info['lat'])
     lng = str(geo_info['lng'])
     timezone = geo_info['timezone']
     
-    result = sun_rise_set(timezone, lat, lng)
-    result['address you input'] = input
+    date = str(date)
+    
+    result = sun_rise_set(timezone, lat, lng, date)
+    result['address you input'] = address
     
     return result
 
