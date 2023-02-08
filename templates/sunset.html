@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- the full dict for a president is sent here as pres by the route -->
+
+<div class="topnav">
+  <h2>Sunrise/Sunset at {{data['address'] }}</h2>
+   <center class="row">
+   <div class="search-container">
+    <form method="post">
+      <input type="text" placeholder="Search for Anywhere!" name="address">
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  </center>
+</div>
+
+
+    <!--<h2 class="col-md-3 text-center">Sunrise/Sunset at {{data['address'] }}  </h2>    -->
+    <!--<form method="post" class="col-md-6 col-md-offset-3">-->
+  
+    <!--    </div>-->
+    <!--    <form>-->
+
+
+
+
+
+<!--<h2>Sunrise/Sunset Time at {{ data['address']}}</h2>-->
+
+<div>
+    <!--<img class="right" src={{ imageSrc }} alt="Sunset portrait" width = '200px' height = 'auto'>-->
+
+<ul>
+    <li> Date: {{data.date}}</li>
+    <li> Sunrise Time: {{data.sunrise}}</li>
+    <li> Sunset Time: {{data.sunset}}</li>
+    <li> Day Length: {{data['day length']}}</li>
+    <li> Time Zone: {{data['time zone']}}</li>
+</ul>
+
+</div>
+
+
+    
+
+
+
+
+
+{% endblock %}

@@ -1,10 +1,12 @@
-from flask import Flask
+from flask import Flask, render_template, request
 import requests
 # import json
 import datetime
+from datetime import date
 import pytz
 import collections
 from geo import get_location
+from imageLinks import srcOfSunsetImages
 
 def sun_rise_set(timezone_name: str, latitude: str, longitude: str, date:str):
     response = requests.get('https://api.sunrise-sunset.org/json', params={'lat': latitude, 'lng': longitude, 'date': date}).json()
@@ -31,9 +33,10 @@ def sun_rise_set(timezone_name: str, latitude: str, longitude: str, date:str):
 
 app = Flask(__name__)
 
-@app.route("/")
-def home():
-    return 'Welcome to the Sunset Info'
+# @app.route("/")
+# def home():
+#     # return render_template(('hello.html', name = name))
+#     return 'Welcome to the Sunset Info'
 
 # @app.route("/")
 # def index():
@@ -47,8 +50,16 @@ def home():
 # 		location = get_location(data['city'])
 # 		return {'temperature': get_temperature(location), 'wiki': get_city_info(data['city'])}
 
-@app.route('/search/<address>/<date>', methods=["GET"])
-def get_time(address, date):
+@app.route('/', methods=["GET", "POST"])
+def get_time():
+    
+    if request.method == 'POST':
+        address = request.form['address']
+    else:
+        address = "Duke University"
+
+    date = datetime.date.today()
+    
     geo_info = get_location(address)
     
     lat = str(geo_info['lat'])
@@ -58,9 +69,9 @@ def get_time(address, date):
     date = str(date)
     
     result = sun_rise_set(timezone, lat, lng, date)
-    result['address you input'] = address
+    result['address'] = address
     
-    return result
+    return render_template('sunset.html', data = result, imageSrc = srcOfSunsetImages[0])
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=8080, debug=True)
