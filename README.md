@@ -20,8 +20,8 @@ the project will construct a AWS-based microservice that provides users with inf
 ### Project Tasks
 * ~~Create a Microservice in Flask or Fast API~~
 * ~~Push source code to Github~~
-* Configure Build System to Deploy changes
-* Use IaC (Infrastructure as Code) to deploy code
+* ~~Configure Build System to Deploy changes~~
+* ~~Use IaC (Infrastructure as Code) to deploy code~~
 * ~~Use either AWS, Azure, GCP (recommended services include Google App Engine, AWS App Runner or Azure App Services)~~
 * Containerization is optional, but recommended
 
@@ -31,9 +31,8 @@ the project will construct a AWS-based microservice that provides users with inf
   * ~~write up the server FlaskAPI.~~
   
 * Week 5 (of Spring 23): 
-  * Combine with weather info.
-  * Design UI design.
-  * Deploy it.
+  * ~~Design UI design.~~
+  * ~~Deploy it.~~
 
 ### Project Set Up
 1. Create and source the virtual environment
