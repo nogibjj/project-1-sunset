@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 import requests
 # import json
 import datetime
-from datetime import date
+# from datetime import date
 import pytz
 import collections
 from geo import get_location
