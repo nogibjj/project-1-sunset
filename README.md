@@ -1,38 +1,31 @@
 <!-- [![CI](https://github.com/nogibjj/aws-template/actions/workflows/cicd.yml/badge.svg?branch=main)](https://github.com/nogibjj/aws-template/actions/workflows/cicd.yml)
 [![Codespaces Prebuilds](https://github.com/nogibjj/aws-template/actions/workflows/codespaces/create_codespaces_prebuilds/badge.svg?branch=main)](https://github.com/nogibjj/aws-template/actions/workflows/codespaces/create_codespaces_prebuilds) -->
 
-
-
 [![Python application test with GitHub Actions](https://github.com/nogibjj/project-1-sunset/actions/workflows/main.yml/badge.svg)](https://github.com/nogibjj/project-1-sunset/actions/workflows/main.yml)
+
 ## IDS 721 Project 1: Cloud Continuous Delivery of Microservice - Sunrise/Sunset Info
 
-### Intro 
+This is a microservice that provides information about sunrise/sunset time in a given location. Additionally, it can combine local weather information to suggest whether it is a good day to observe sunrise or sunset.
 
-the project will construct a AWS-based microservice that provides users with information of sunrise/sunset time given a location. Moreover, I hope I can combine with local weather information to suggest whether it is a good day to observe suggest sunrise and sunset. 
+The microservice is built using Flask, and it is deployed on AWS. The microservice can be accessed through a simple UI that allows users to input a place and date, and it displays the corresponding sunrise and sunset times.
 
 
 ### Usage
-* First, Users need to input a place and a date that they want to search of sunrise/sunset information.
-* Second, the server will get the local sunrise/sunset info via APIs.
-* Third, it get local weather info via APIs and build a simple algorithm to show whether it is a good day to observe suggest sunrise and sunset. (e.g., Rainy day, no sunrise/sunset; the day before an hurricane, spectacular sunset I promise)
-* Finally, it will allow users to customize the timestamp (past or future).
+
+To use the microservice, follow these steps:
+
+Input a place and a date that you want to search for sunrise/sunset information.
+The server will get the local sunrise/sunset info via APIs.
+It gets the local weather info via APIs and builds a simple algorithm to show whether it is a good day to observe suggested sunrise and sunset.
+Finally, it allows users to customize the timestamp (past or future).
 
 ### Project Tasks
-* ~~Create a Microservice in Flask or Fast API~~
-* ~~Push source code to Github~~
-* ~~Configure Build System to Deploy changes~~
-* ~~Use IaC (Infrastructure as Code) to deploy code~~
-* ~~Use either AWS, Azure, GCP (recommended services include Google App Engine, AWS App Runner or Azure App Services)~~
-* Containerization is optional, but recommended
-
-### Current Plan
-* Week 4 (of Spring 23): 
-  * ~~set up GitHub Actions and AWS.~~
-  * ~~write up the server FlaskAPI.~~
-  
-* Week 5 (of Spring 23): 
-  * ~~Design UI design.~~
-  * ~~Deploy it.~~
+* Create a microservice in Flask or Fast API
+* Push source code to Github
+* Configure build system to deploy changes
+* Use Infrastructure as Code (IaC) to deploy code
+* Use either AWS, Azure, or GCP (recommended services include Google App Engine, AWS App Runner, or Azure App Services)
+* Containerization is optional but recommended
 
 ### Project Set Up
 1. Create and source the virtual environment
@@ -48,13 +41,15 @@ make install
 ```
 python3 
 ```
+
 ### Current Progress
+You can view the UI for the microservice, including the homepage and an example output for a search for sunrise/sunset information in Duke University on February 1, 2023, in the Screenshots.
+
 #### Homepage
 ![Home](https://user-images.githubusercontent.com/68854273/215937259-87aa0834-f556-4336-8bb9-97afaa06730f.png) 
 
 #### Homepage
 ![Duke University, 2023-02-01](https://user-images.githubusercontent.com/68854273/215937898-404b07b7-5e47-40fe-bc8b-83a61d226579.png) 
-
 
 ### Reference Video(s):
 
