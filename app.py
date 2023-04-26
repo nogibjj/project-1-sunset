@@ -8,8 +8,8 @@ import collections
 from geo import get_location
 from imageLinks import srcOfSunsetImages
 
-def sun_rise_set(timezone_name: str, latitude: str, longitude: str, date:str):
-    response = requests.get('https://api.sunrise-sunset.org/json', params={'lat': latitude, 'lng': longitude, 'date': date}).json()
+def sun_rise_set(timezone_name: str, latitude: str, longitude: str, dateInput:str):
+    response = requests.get('https://api.sunrise-sunset.org/json', params={'lat': latitude, 'lng': longitude, 'date': dateInput}).json()
     tz = pytz.timezone(timezone_name)
     time_zone = tz.utcoffset(dt=datetime.datetime.utcnow())
     sunrise = datetime.datetime.strptime(response['results']['sunrise'], "%I:%M:%S %p")
@@ -27,10 +27,14 @@ def sun_rise_set(timezone_name: str, latitude: str, longitude: str, date:str):
               'lat': latitude,
               'lng': longitude,
               'time zone': timezone_name,
-              'date': date,
+              'date': dateInput,
     }
     return result
 
+
+def add(x,y):
+    return x+y
+    
 app = Flask(__name__)
 
 # @app.route("/")
@@ -58,7 +62,7 @@ def get_time():
     else:
         address = "Duke University"
 
-    date = datetime.date.today()
+    date_ = datetime.date.today()
     
     geo_info = get_location(address)
     
@@ -66,9 +70,9 @@ def get_time():
     lng = str(geo_info['lng'])
     timezone = geo_info['timezone']
     
-    date = str(date)
+    date_ = str(date_)
     
-    result = sun_rise_set(timezone, lat, lng, date)
+    result = sun_rise_set(timezone, lat, lng, date_)
     result['address'] = address
     
     return render_template('sunset.html', data = result, imageSrc = srcOfSunsetImages[0])
