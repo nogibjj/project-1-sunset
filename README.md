@@ -39,11 +39,29 @@ make install
 ```
 3. Run flask
 ```
-python3 
+python3 app.py
 ```
 
-### Current Progress
-You can view the UI for the microservice, including the homepage and an example output for a search for sunrise/sunset information in Duke University on February 1, 2023, in the Screenshots.
+### Containerized with Docker and Deployed with AWS ECR and Apprunner
+1. Clone and open the repo in AWS Cloud9, source the virtual environment
+```
+source env/bin/activate
+```
+2. Create a Repository in AWS ECR.
+3. Write the corresponding Dockerfile.
+4. View the push commands in ECR, follow the steps in Cloud9 terminal. 
+  - `aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 962268758789.dkr.ecr.us-east-1.amazonaws.com`
+  - `docker build -t sunset .`
+  - `docker tag sunset:latest 962268758789.dkr.ecr.us-east-1.amazonaws.com/sunset:latest`
+  - `docker push 962268758789.dkr.ecr.us-east-1.amazonaws.com/sunset:latest`
+
+5. Go to AWS Apprunner, click `create services` fill with default, and `create and deploy`.
+
+*Note: To pass the health attack, you need to make sure the host address in app.py is "0.0.0.0", and the port number should match the one you expose in Dockerfile.* 
+
+6. Your program is successfully deployed with AWS Apprunner and you will get the default domain - https://p6jsa3zbp3.us-east-1.awsapprunner.com.
+
+
 
 #### Homepage
 ![Home](https://user-images.githubusercontent.com/68854273/215937259-87aa0834-f556-4336-8bb9-97afaa06730f.png) 
