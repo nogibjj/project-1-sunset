@@ -43,6 +43,7 @@ python3 app.py
 ```
 
 ### Containerized with Docker and Deployed with AWS ECR and Apprunner
+
 1. Clone and open the repo in AWS Cloud9, source the virtual environment
 ```
 source env/bin/activate
@@ -61,12 +62,13 @@ source env/bin/activate
 
 6. Your program is successfully deployed with AWS Apprunner and you will get the default domain - https://p6jsa3zbp3.us-east-1.awsapprunner.com.
 
+### Demo
 
+#### Deployed Homepage
+![Home](https://user-images.githubusercontent.com/68854273/235832863-7f242180-1a89-4f59-84a1-931b08950535.png)
 
-#### Homepage
-![Home](https://user-images.githubusercontent.com/68854273/215937259-87aa0834-f556-4336-8bb9-97afaa06730f.png) 
+#### Previous Testing
 
-#### Homepage
 ![Duke University, 2023-02-01](https://user-images.githubusercontent.com/68854273/215937898-404b07b7-5e47-40fe-bc8b-83a61d226579.png) 
 
 ### Reference Video(s):
